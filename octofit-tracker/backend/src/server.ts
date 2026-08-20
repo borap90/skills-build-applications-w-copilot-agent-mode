@@ -22,7 +22,7 @@ app.use('/api/leaderboard', leaderboardRouter);
 app.use('/api/workouts', workoutsRouter);
 
 app.listen(port, () => {
-  const codespaceName = process.env.CODESPACE_NAME1;
+  const codespaceName = process.env.CODESPACE_NAME;
   const baseUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev`
     : `http://localhost:${port}`;
