@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import { getCollection } from '../api.js'
 
+const activitiesEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities`
+  : 'http://localhost:8000/api/activities'
+
 function Activities() {
   const [activities, setActivities] = useState([])
   const [error, setError] = useState('')
 
-  useEffect(() => { getCollection('activities').then(setActivities).catch((loadError) => setError(loadError.message)) }, [])
+  useEffect(() => { getCollection(activitiesEndpoint).then(setActivities).catch((loadError) => setError(loadError.message)) }, [])
 
   return (
     <section>

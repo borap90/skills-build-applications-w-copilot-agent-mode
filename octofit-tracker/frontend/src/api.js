@@ -15,7 +15,8 @@ export function normalizeCollection(payload) {
 }
 
 export async function getCollection(resource) {
-  const response = await fetch(`${API_BASE_URL}/${resource}/`)
+  const endpoint = resource.startsWith('http') ? resource : `${API_BASE_URL}/${resource}`
+  const response = await fetch(`${endpoint}/`)
   if (!response.ok) {
     throw new Error(`Unable to load ${resource} (${response.status})`)
   }

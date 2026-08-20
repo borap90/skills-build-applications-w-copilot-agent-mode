@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import { getCollection } from '../api.js'
 
+const teamsEndpoint = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams`
+  : 'http://localhost:8000/api/teams'
+
 function Teams() {
   const [teams, setTeams] = useState([])
   const [error, setError] = useState('')
 
-  useEffect(() => { getCollection('teams').then(setTeams).catch((loadError) => setError(loadError.message)) }, [])
+  useEffect(() => { getCollection(teamsEndpoint).then(setTeams).catch((loadError) => setError(loadError.message)) }, [])
 
   return (
     <section>
